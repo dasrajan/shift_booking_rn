@@ -1,12 +1,23 @@
-import React from 'react'
-import { Text } from 'react-native'
+import React, { useEffect } from 'react';
+import {Text, View} from 'react-native';
 
-type Props = {}
+import {useShiftContext} from 'context/ShiftContext';
+
+type Props = {};
 
 const MyShifts = (props: Props) => {
+  const {shifts, fetchShifts, updateShift} = useShiftContext();
+  useEffect(() => {
+    console.log('IN MY SHIFT')
+    fetchShifts()
+  }, [])
+  
   return (
-    <Text>MyShifts</Text>
-  )
-}
+    <View>
+      <Text>MyShifts</Text>
+      <Text>{JSON.stringify(shifts)}</Text>
+    </View>
+  );
+};
 
 export default MyShifts;

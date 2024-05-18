@@ -1,8 +1,14 @@
 import BottomNavigation from 'navigation/BottomNavigator';
 import React from 'react';
 
+import {ShiftProvider} from 'context/ShiftContext';
+
 const App = () => {
-  return <BottomNavigation />;
+  return (
+    <ShiftProvider>
+      <BottomNavigation />
+    </ShiftProvider>
+  );
 };
 
 export default App;

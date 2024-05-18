@@ -18,10 +18,10 @@ const colors = {
   greenTint2: '#55CB82',
   greenTint3: '#CAEFD8',
 
-  primaryGray:"#fafafa",
-  grayBorder: "##ececec",
-  textGray:"##9b9b9b",
-  bottomTextColor: "#9b9b9b"
+  primaryGray: '#fafafa',
+  grayBorder: '##ececec',
+  textGray: '##9b9b9b',
+  bottomTextColor: '#9b9b9b',
 };
 
 export default colors;
