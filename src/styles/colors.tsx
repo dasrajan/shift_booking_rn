@@ -22,6 +22,8 @@ const colors = {
   grayBorder: '##ececec',
   textGray: '##9b9b9b',
   bottomTextColor: '#9b9b9b',
+  borderColor: "#dde0e4",
+  buttonBorder: "##d8d8d8"
 };
 
 export default colors;

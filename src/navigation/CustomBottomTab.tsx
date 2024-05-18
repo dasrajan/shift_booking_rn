@@ -59,8 +59,8 @@ const styles = StyleSheet.create({
     paddingStart: 10,
     paddingEnd: 10,
     backgroundColor: colors.primaryGray,
-    borderWidth: 0.5,
-    borderColor: colors.textGray,
+    borderTopWidth: 1,
+    borderColor: colors.borderColor,
   },
   tabButtonMain: {
     flex: 1,
