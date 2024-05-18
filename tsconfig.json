@@ -1,3 +1,22 @@
 {
-  "extends": "@react-native/typescript-config/tsconfig.json"
+  "extends": "@react-native/typescript-config/tsconfig.json",
+  // "compilerOptions": {
+  //   "paths": {
+  //     "*": ["src/*"],
+  //     "@components": ["src/components/index"],
+  //     "@hooks": ["src/hooks/index"]
+  //   }
+  // }
+  "compilerOptions": {
+    "strict": true,
+    // Path alias config
+    "baseUrl": ".",
+    "paths": {
+      // ALiases for quick access and short import
+      "*": ["src/*"],
+      "components": ["src/components/index"],
+      "hooks": ["src/hooks/index"],
+      "screens": ["src/screens/index"]
+    }
+  }
 }

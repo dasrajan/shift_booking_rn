@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders completely 1`] = `
+<RCTSafeAreaView>
+  <View>
+    <Text>
+      Hello R N
+    </Text>
+  </View>
+</RCTSafeAreaView>
+`;

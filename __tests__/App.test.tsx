@@ -15,3 +15,8 @@ import renderer from 'react-test-renderer';
 it('renders correctly', () => {
   renderer.create(<App />);
 });
+
+test('renders completely', () => {
+  const snap = renderer.create(<App />).toJSON();
+  expect(snap).toMatchSnapshot();
+});
