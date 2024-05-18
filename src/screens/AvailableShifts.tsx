@@ -2,12 +2,11 @@ import React, {useEffect, useState} from 'react';
 import {Text, View} from 'react-native';
 
 import {useShiftContext} from 'context/ShiftContext';
-import {Rootview, ShiftList} from '../components';
+import {AreaFilter, Rootview, ShiftList} from '../components';
 
 type Props = {};
 
 const AvailableShifts = (props: Props) => {
-
   const [shiftList, setshiftList] = useState([
     {
       title: 'Today',
@@ -102,7 +101,22 @@ const AvailableShifts = (props: Props) => {
       ],
     },
   ]);
-  
+  const [areaList, setareaList] = useState([
+    {
+      city: 'Helsinki',
+      count: 8,
+    },
+    {
+      city: 'Tampere',
+      count: 8,
+    },
+    {
+      city: 'Turku',
+      count: 5,
+    },
+  ]);
+  const [activeArea, setactiveArea] = useState('Helsinki');
+
   const {shifts, fetchShifts, updateShift} = useShiftContext();
   useEffect(() => {
     console.log('IN MY SHIFT');
@@ -111,6 +125,11 @@ const AvailableShifts = (props: Props) => {
 
   return (
     <Rootview>
+      <AreaFilter
+        areaList={areaList}
+        handleChange={(city: string) => setactiveArea(city)}
+        active={activeArea}
+      />
       <ShiftList shiftData={shiftList} />
     </Rootview>
   );
