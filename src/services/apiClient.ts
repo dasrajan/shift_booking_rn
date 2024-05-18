@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const apiClient = axios.create({
-  baseURL: 'https://api.example.com',
+  baseURL: 'https://1af2-182-48-214-18.ngrok-free.app',
   headers: {
     'Content-Type': 'application/json',
   },
@@ -21,8 +21,9 @@ apiClient.interceptors.request.use(
 apiClient.interceptors.response.use(
   response => response,
   error => {
+    console.log("🚀 ~ error:", error)
     // Handle global errors
-    if (error.response.status === 401) {
+    if (error?.response?.status === 401) {
       // Handle unauthorized access
     }
     return Promise.reject(error);

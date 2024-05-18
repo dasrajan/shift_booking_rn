@@ -3,23 +3,21 @@ import {Text, View} from 'react-native';
 
 import styles from './ShiftCardStyle';
 import {CustomButton} from '../index';
+import {ShiftCardType} from 'types/commonTypes';
 
-interface ShiftCardType {
-  time: string;
-  area?: string;
-  booked: boolean;
-  isOverlapping?: boolean;
-  isDisable?: boolean;
-}
 const ShiftCard: React.FC<ShiftCardType> = ({
   time,
   area,
   booked = false,
   isOverlapping = false,
   isDisable = false,
+  onhandleBook = () => {},
+  onhandleCancel = () => {},
 }) => {
   const onClickItem = () => {
-    console.log('ITEM', time);
+    if (booked) onhandleCancel();
+    else if (isOverlapping) return;
+    else onhandleBook();
   };
 
   return (

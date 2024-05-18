@@ -57,11 +57,13 @@ const MyShifts = (props: Props) => {
     }
   ]);
   
-  const {shifts, fetchShifts, updateShift} = useShiftContext();
+  const {myBookedShifts, fetchShifts, updateShift} = useShiftContext();
   useEffect(() => {
-    console.log('IN MY SHIFT');
-    // fetchShifts();
   }, []);
+
+  useEffect(() => {
+    console.log('IN MY SHIFT UPDATE',myBookedShifts);
+  }, [myBookedShifts]);
 
   return (
     <Rootview>

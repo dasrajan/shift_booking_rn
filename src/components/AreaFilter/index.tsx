@@ -20,6 +20,7 @@ const AreaFilter: React.FC<AreaFilterType> = ({
         return (
           <TouchableOpacity
             style={styles.headerButton}
+            key={area.city}
             onPress={() => handleChange(area?.city)}>
             <Text
               style={[
