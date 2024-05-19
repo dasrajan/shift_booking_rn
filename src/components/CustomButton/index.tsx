@@ -2,6 +2,7 @@ import React from 'react';
 import {Text, TouchableOpacity, TouchableOpacityProps} from 'react-native';
 import styles from './CustomButton.style';
 import colors from 'styles/colors';
+import {Loader} from '../../components';
 
 export type ButtonVariant = 'primary' | 'cancelled' | 'disabled';
 interface CustomButtonType extends TouchableOpacityProps {
@@ -49,7 +50,10 @@ const CustomButton: React.FC<CustomButtonType> = ({
       onPress={onPress}
       style={[styles.buttonContainer, variantStyle.button, style]}
       {...props}>
-      <Text style={[styles.textButton, variantStyle.text]}>{title}</Text>
+      {isLoading && <Loader isRed={true}/>}
+      {!isLoading && (
+        <Text style={[styles.textButton, variantStyle.text]}>{title}</Text>
+      )}
     </TouchableOpacity>
   );
 };

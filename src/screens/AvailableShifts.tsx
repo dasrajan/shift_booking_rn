@@ -5,9 +5,9 @@ import {useShiftContext} from 'context/ShiftContext';
 import {AreaFilter, Rootview, ShiftList} from '../components';
 import {CityObject} from 'types/commonTypes';
 
-type Props = {};
+interface AvailableShiftsType {}
 
-const AvailableShifts = (props: Props) => {
+const AvailableShifts: React.FC<AvailableShiftsType> = ({}) => {
   const [shiftList, setshiftList] = useState<any>([]);
   const [areaList, setareaList] = useState<CityObject[]>([]);
   const [activeArea, setactiveArea] = useState('');

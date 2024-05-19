@@ -8,8 +8,6 @@ import React, {
 } from 'react';
 import apiClient from 'services/apiClient';
 import {
-  bookShiftAPI,
-  cancelShiftAPI,
   getAllShifts,
 } from 'services/shiftServices';
 import {ShiftObject} from 'types/commonTypes';
@@ -25,9 +23,8 @@ interface ShiftContextType {
     availableShiftsList: any[];
   };
   overlappingList: any[];
+  allBookedListItem: number[];
   fetchShifts: () => void;
-  bookShift: (shiftId: number) => void;
-  cancelShift: (shiftId: number) => void;
 
   //Helper methods
   getAvailableShiftsForCity: (cityName: string) => void;
@@ -43,10 +40,9 @@ const ShiftContext = createContext<ShiftContextType>({
   },
   overlappingList: [],
   isLoading: false,
+  allBookedListItem:[],
 
   fetchShifts: () => {},
-  bookShift: () => {},
-  cancelShift: () => {},
   getAvailableShiftsForCity: () => {},
 });
 
@@ -58,6 +54,7 @@ const ShiftProvider = ({children}: {children: ReactNode}) => {
   const [shifts, setShifts] = useState<ShiftObject[]>([]);
   const [myBookedShifts, setmybookedShifts] = useState<any>([]);
   const [overlappingList, setoverlappingList] = useState<any>([]);
+  const [allBookedListItem, setallBookedListItem] = useState<any>([]);
   const [availableData, setavailableData] = useState<any>({
     areas: [],
     availableShiftsList: [],
@@ -80,6 +77,7 @@ const ShiftProvider = ({children}: {children: ReactNode}) => {
       setShifts(data);
       setmybookedShifts(bookedList);
       setoverlappingList(overlappingList);
+      setallBookedListItem(bookedShifts)
       setavailableData({
         areas,
         availableShiftsList,
@@ -90,31 +88,6 @@ const ShiftProvider = ({children}: {children: ReactNode}) => {
   const getAvailableShiftsForCity = (cityName: string) => {
     const list = availableData?.availableShiftsList[cityName];
     return getFormattedShift(list);
-  };
-
-  // Function to update shift
-  const bookShift = async (shiftIndex: number) => {
-    const shiftItemId = shifts[shiftIndex]?.id;
-    if (shiftItemId) {
-      setisLoading(true);
-      const response = await bookShiftAPI(shiftItemId);
-      setisLoading(false);
-      if (response) {
-        fetchShifts();
-      }
-    }
-  };
-
-  const cancelShift = async (shiftIndex: number) => {
-    const shiftItemId = shifts[shiftIndex]?.id;
-    if (shiftItemId) {
-      setisLoading(true);
-      const response = await cancelShiftAPI(shiftItemId);
-      setisLoading(false);
-      if (response) {
-        fetchShifts();
-      }
-    }
   };
 
   useEffect(() => {
@@ -129,9 +102,8 @@ const ShiftProvider = ({children}: {children: ReactNode}) => {
         availableData,
         overlappingList,
         isLoading,
+        allBookedListItem,
         fetchShifts,
-        bookShift,
-        cancelShift,
         getAvailableShiftsForCity,
       }}>
       {children}

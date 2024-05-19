@@ -4,6 +4,7 @@ import ShiftList from './ShiftList';
 import Rootview from './Rootview';
 import AreaFilter from './AreaFilter';
 import ErrorBoundary from './ErrorBoundary';
+import Loader from './Loader';
 
 export {
   CustomButton,
@@ -12,4 +13,5 @@ export {
   Rootview,
   AreaFilter,
   ErrorBoundary,
+  Loader
 };

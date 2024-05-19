@@ -12,7 +12,7 @@ interface ShiftListType {
   showLabel?: boolean;
 }
 const ShiftList: React.FC<ShiftListType> = ({shiftData, showLabel = true}) => {
-  const {shifts, overlappingList, bookShift, cancelShift} = useShiftContext();
+  const {shifts, overlappingList} = useShiftContext();
 
   const renderSectionHedaer = (title: string) => {
     const currentShiftData = shiftData.filter(
@@ -62,9 +62,8 @@ const ShiftList: React.FC<ShiftListType> = ({shiftData, showLabel = true}) => {
               area={shiftData?.area}
               booked={isOverlapped ? false : shiftData?.booked}
               isOverlapping={isOverlapped}
-              onhandleBook={() => bookShift(item)}
-              onhandleCancel={() => cancelShift(item)}
               showLabel={showLabel}
+              shiftIndex={item}
             />
           );
         }}

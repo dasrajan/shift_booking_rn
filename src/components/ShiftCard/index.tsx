@@ -4,6 +4,7 @@ import {Text, View} from 'react-native';
 import styles from './ShiftCardStyle';
 import {CustomButton} from '../index';
 import {ShiftCardType} from 'types/commonTypes';
+import {useApi} from '../../hooks';
 
 const ShiftCard: React.FC<ShiftCardType> = ({
   time,
@@ -12,13 +13,20 @@ const ShiftCard: React.FC<ShiftCardType> = ({
   isOverlapping = false,
   isDisable = false,
   showLabel = false,
+  shiftIndex,
   onhandleBook = () => {},
   onhandleCancel = () => {},
 }) => {
+  const {data, loading, error, bookShift, cancelShift} = useApi<any>();
+
   const onClickItem = () => {
-    if (booked) onhandleCancel();
+    // if (booked) onhandleCancel();
+    // else if (isOverlapping) return;
+    // else onhandleBook();
+
+    if (booked) cancelShift(shiftIndex);
     else if (isOverlapping) return;
-    else onhandleBook();
+    else bookShift(shiftIndex);
   };
 
   return (
@@ -27,6 +35,7 @@ const ShiftCard: React.FC<ShiftCardType> = ({
         <Text style={styles.timeText}>{time}</Text>
         {!showLabel && area && <Text style={styles.countryText}>{area}</Text>}
       </View>
+      {/* <Text>{JSON.stringify(loading)}</Text> */}
 
       <View style={styles.sectionMid}>
         {showLabel && (
@@ -47,6 +56,7 @@ const ShiftCard: React.FC<ShiftCardType> = ({
           }
           onPress={onClickItem}
           disabled={isOverlapping}
+          isLoading={loading}
         />
       </View>
     </View>
