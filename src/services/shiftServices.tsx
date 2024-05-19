@@ -12,8 +12,11 @@ export const getShiftById = async (shiftId: string): Promise<ShiftObject> => {
 };
 
 export const bookShiftAPI= async (shiftId: string): Promise<ShiftObject> => {
-  console.log("🚀 ~ bookShiftAPI ~ shiftId:", shiftId)
-  const response = await apiClient.post<ShiftObject>(`/shifts/${shiftId}/book`);
-  console.log("🚀 ~ bookShiftAPI ~ response:", response)
+  const response = await apiClient.get<ShiftObject>(`/shifts/${shiftId}/book`);
+  return response.data;
+};
+
+export const cancelShiftAPI= async (shiftId: string): Promise<ShiftObject> => {
+  const response = await apiClient.get<ShiftObject>(`/shifts/${shiftId}/cancel`);
   return response.data;
 };

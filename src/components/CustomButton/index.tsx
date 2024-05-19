@@ -18,7 +18,7 @@ export const buttonStyles: any = {
     borderColor: colors.pinkTint1,
   },
   disabled: {
-    borderColor: colors.buttonBorder,
+    borderColor: colors.borderColor,
   },
 };
 

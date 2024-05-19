@@ -1,52 +1,44 @@
 import dayjs from 'dayjs';
 import {ShiftObject} from 'types/commonTypes';
 
-export function formatSimpleTime(timestamp1: string, timestamp2: string) {
+export const formatSimpleTime = (timestamp1: string, timestamp2: string) => {
   const t1 = dayjs(timestamp1);
   const t2 = dayjs(timestamp2);
 
   return `${t1.format('HH:mm')} - ${t2.format('HH:mm')}`;
-}
+};
 
-export function formatTime(timestamp: string) {
+export const formatTime = (timestamp: string) => {
   const t = dayjs(timestamp);
 
   if (isToday(t)) return 'Today';
   if (isTomorrow(t)) return 'Tomorrow';
 
   return `${t.format('MMMM DD')}`;
-}
+};
 
-export function isToday(timestamp: string) {
+export const isToday = (timestamp: string) => {
   return (
     ['$y', '$D', '$M'].filter((key: any) => {
       return dayjs()[key] !== dayjs(timestamp)[key];
     }).length === 0
   );
-}
+};
 
-export function isTomorrow(timestamp: string) {
+export const isTomorrow = (timestamp: string) => {
   return (
     ['$y', '$D', '$M'].filter(key => {
       return dayjs().add(1, 'day')[key] !== dayjs(timestamp)[key];
     }).length === 0
   );
-}
+};
 
-export function minutesToTime(minutesNumber: number) {
-  const hours = Math.floor(minutesNumber / 60);
-  const minutes = minutesNumber % 60;
-  return `${hours > 0 ? `${hours} h` : ''}${
-    hours > 0 && minutes > 0 ? ` and ` : ''
-  }${minutes > 0 ? `${minutes} min` : ''}`;
-}
-
-export function isOverlapping(timeInterval1: any, timeInterval2: any) {
+export const isOverlapping = (timeInterval1: any, timeInterval2: any) => {
   return (
     timeInterval1.startTime < timeInterval2.endTime &&
     timeInterval1.endTime > timeInterval2.startTime
   );
-}
+};
 
 interface FormattedDataType {
   bookedShifts: any;
@@ -58,7 +50,6 @@ interface FormattedDataType {
 }
 
 export const getFormattedData = (data: ShiftObject[]): FormattedDataType => {
-  console.log('IN CUSTOM: getFormattedData', data);
   let bookedShifts: any = [],
     overlappingList: any = [],
     availableShiftsList: any = [],
@@ -84,13 +75,13 @@ export const getFormattedData = (data: ShiftObject[]): FormattedDataType => {
     //initializing available shifts array list for individual dates
     areas.map((area: any) => {
       availableShiftsList[area] = {};
-      possibleDates.map((date:any) => {
+      possibleDates.map((date: any) => {
         availableShiftsList[area][date] = [];
       });
     });
 
     //initializing booked shifts array list for Booked dates
-    possibleDates.map((date:any) => {
+    possibleDates.map((date: any) => {
       bookedList[date] = [];
     });
 
@@ -127,9 +118,8 @@ export const getFormattedData = (data: ShiftObject[]): FormattedDataType => {
       });
     });
 
-
-    //Adding shift availability counts to area 
-    areas = areas.map((area:any) => {
+    //Adding shift availability counts to area
+    areas = areas.map((area: any) => {
       const count = Object.keys(availableShiftsList[area])
         .map(timestamp => availableShiftsList[area][timestamp].length)
         .reduce((total, shifts) => {
@@ -147,9 +137,8 @@ export const getFormattedData = (data: ShiftObject[]): FormattedDataType => {
       possibleDates,
       availableShiftsList,
       bookedList,
-      overlappingList
+      overlappingList,
     });
-    console.log('+++++++++++++++++++ OUT FETCH');
   }
   return {
     bookedShifts,
@@ -157,6 +146,26 @@ export const getFormattedData = (data: ShiftObject[]): FormattedDataType => {
     possibleDates,
     availableShiftsList,
     bookedList,
-    overlappingList
+    overlappingList,
   };
+};
+
+export const getFormattedShift = (shifts: any) => {
+  const res = Object.keys(shifts).map(timestamp => ({
+    title: timestamp,
+    data: shifts[timestamp],
+  }));
+  return res;
+};
+
+export const timeDiffBetween = (startTime: any, endTime: any) => {
+  return dayjs(endTime).diff(dayjs(startTime), 'minute');
+};
+
+export const minutesToTime = (minutesNumber: number) => {
+  const hours = Math.floor(minutesNumber / 60);
+  const minutes = minutesNumber % 60;
+  return `${hours > 0 ? `${hours} h` : ''}${
+    hours > 0 && minutes > 0 ? ` and ` : ''
+  }${minutes > 0 ? `${minutes} min` : ''}`;
 };

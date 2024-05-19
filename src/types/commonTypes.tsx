@@ -12,6 +12,7 @@ export interface ShiftCardType {
   booked: boolean;
   isOverlapping?: boolean;
   isDisable?: boolean;
+  showLabel?: boolean;
   onhandleBook?: () => void;
   onhandleCancel?: () => void;
 }

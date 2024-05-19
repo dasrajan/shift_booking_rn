@@ -16,11 +16,11 @@ const AvailableShifts = (props: Props) => {
   useEffect(() => {
     //Initialize shifts and area data once application loads after initial API call
     if (availableData?.areas && availableData?.availableShiftsList) {
-      const activeArea = availableData?.areas[0]?.city;
+      const newActive = activeArea || availableData?.areas[0]?.city;
       setareaList(availableData?.areas);
-      setactiveArea(activeArea);
+      setactiveArea(newActive);
       if (availableData?.availableShiftsList?.length)
-        setshiftList(getAvailableShiftsForCity(activeArea));
+        setshiftList(getAvailableShiftsForCity(newActive));
     }
   }, [availableData]);
 
@@ -38,7 +38,7 @@ const AvailableShifts = (props: Props) => {
           active={activeArea}
         />
       )}
-      {shiftList?.length > 0 && <ShiftList shiftData={shiftList} />}
+      {shiftList?.length > 0 && <ShiftList shiftData={shiftList} showLabel={true} />}
     </Rootview>
   );
 };

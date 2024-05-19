@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import {Text, View} from 'react-native';
 
 import styles from './ShiftCardStyle';
@@ -11,6 +11,7 @@ const ShiftCard: React.FC<ShiftCardType> = ({
   booked = false,
   isOverlapping = false,
   isDisable = false,
+  showLabel = false,
   onhandleBook = () => {},
   onhandleCancel = () => {},
 }) => {
@@ -24,14 +25,18 @@ const ShiftCard: React.FC<ShiftCardType> = ({
     <View style={styles.cardWrapper}>
       <View style={styles.sectionLeft}>
         <Text style={styles.timeText}>{time}</Text>
-        {area && <Text style={styles.countryText}>{area}</Text>}
+        {!showLabel && area && <Text style={styles.countryText}>{area}</Text>}
       </View>
 
       <View style={styles.sectionMid}>
-        {isOverlapping && (
-          <Text style={styles.overlappingText}>Overlapping</Text>
+        {showLabel && (
+          <Fragment>
+            {isOverlapping && (
+              <Text style={styles.overlappingText}>Overlapping</Text>
+            )}
+            {booked && <Text style={styles.bookedText}>Booked{showLabel}</Text>}
+          </Fragment>
         )}
-        {booked && <Text style={styles.bookedText}>Booked</Text>}
       </View>
 
       <View style={styles.sectionRight}>
