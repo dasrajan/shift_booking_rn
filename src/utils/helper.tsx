@@ -131,14 +131,14 @@ export const getFormattedData = (data: ShiftObject[]): FormattedDataType => {
       };
     });
 
-    console.log('🚀 ~ fetchShifts ~ bookedShifts:', {
-      bookedShifts,
-      areas,
-      possibleDates,
-      availableShiftsList,
-      bookedList,
-      overlappingList,
-    });
+    // console.log('🚀 ~ fetchShifts ~ bookedShifts:', {
+    //   bookedShifts,
+    //   areas,
+    //   possibleDates,
+    //   availableShiftsList,
+    //   bookedList,
+    //   overlappingList,
+    // });
   }
   return {
     bookedShifts,

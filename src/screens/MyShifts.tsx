@@ -16,7 +16,6 @@ const MyShifts: React.FC<MyShiftsType> = ({}) => {
   useEffect(() => {
     setshiftList(getFormattedShift(myBookedShifts));
   }, [myBookedShifts]);
-  console.log("SHIFT",shiftList)
 
   return (
     <Rootview>
@@ -27,7 +26,7 @@ const MyShifts: React.FC<MyShiftsType> = ({}) => {
       )}
       {!isLoading && allBookedListItem?.length === 0 && (
         <View style={styles.noShiftWrapper}>
-          <Text style={styles.noShiftText}>No Shifts booked yet!</Text>
+          <Text style={styles.noShiftText}>No shifts booked yet!</Text>
         </View>
       )}
     </Rootview>

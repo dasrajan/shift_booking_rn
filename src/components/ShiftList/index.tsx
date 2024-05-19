@@ -55,7 +55,6 @@ const ShiftList: React.FC<ShiftListType> = ({shiftData, showLabel = true}) => {
             shiftData?.endTime,
           );
           const isOverlapped = overlappingList?.includes(item);
-          //   console.log("🚀 ~ shiftData:",item)
           return (
             <ShiftCard
               time={timeStamp}

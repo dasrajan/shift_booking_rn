@@ -18,7 +18,6 @@ const useTicketApi = <T,>(): UseTicketApiReturn<T> => {
   const {shifts, overlappingList, fetchShifts} = useShiftContext();
 
   const apiCall = useCallback(async (type: string, shiftId: any) => {
-    console.log('TYPE', type, shiftId);
     setLoading(true);
     setError(null);
 

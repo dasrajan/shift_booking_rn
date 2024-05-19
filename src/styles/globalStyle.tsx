@@ -16,6 +16,6 @@ export default StyleSheet.create({
   noShiftText:{
     fontSize: 16,
     fontWeight:'bold',
-    color: colors.primaryBlue
+    color: colors.blueTint2
   }
 });
