@@ -57,7 +57,7 @@ const MyShifts = (props: Props) => {
     }
   ]);
   
-  const {myBookedShifts, fetchShifts, updateShift} = useShiftContext();
+  const {myBookedShifts, fetchShifts} = useShiftContext();
   useEffect(() => {
   }, []);
 
